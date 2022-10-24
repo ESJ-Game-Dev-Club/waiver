@@ -1,0 +1,34 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://player/weapons/sword/sword.gd" type="Script" id=1]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 4, 24 )
+
+[node name="Sword" type="Node2D"]
+script = ExtResource( 1 )
+normal_color = Color( 0.858824, 0.423529, 0.423529, 1 )
+attack_color = Color( 0.8, 0.101961, 0.101961, 1 )
+cooldown_color = Color( 0.490196, 0.407843, 0.611765, 1 )
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource( 1 )
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+color = Color( 0.858824, 0.423529, 0.423529, 1 )
+polygon = PoolVector2Array( -4, -24, 4, -24, 4, 24, -4, 24 )
+
+[node name="ColorTimer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[node name="CooldownTimer" type="Timer" parent="."]
+wait_time = 0.9
+one_shot = true
+
+[connection signal="timeout" from="ColorTimer" to="." method="_on_ColorTimer_timeout"]
+[connection signal="timeout" from="CooldownTimer" to="." method="_on_CooldownTimer_timeout"]
