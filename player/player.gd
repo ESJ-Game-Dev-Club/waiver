@@ -1,3 +1,4 @@
+class_name Player
 extends KinematicBody2D
 
 
@@ -14,6 +15,7 @@ var attacking_speed = 50
 
 var health = 3
 
+var inventory_list : Array= ["res://resources/item_images/knife1.png", null, null, null]
 
 func _ready():
 	GlobalVars.player = self
@@ -97,5 +99,7 @@ func _get_input() -> Vector2:
 		input.x -= 1
 	if Input.is_action_pressed("move_right"):
 		input.x += 1
+	if Input.is_action_just_pressed("ui_accept"): ############################################## Test statement for Inventory remove later! #########################################################
+		GlobalVars.emit_signal("item_change", 0, inventory_list[0])
 	
 	return input.normalized()

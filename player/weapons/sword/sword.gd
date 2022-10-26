@@ -1,5 +1,4 @@
-extends Weapon
-
+extends Weapon 
 
 var ready = true # for cooldown timer
 export(Color) var normal_color
