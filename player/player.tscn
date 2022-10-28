@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://player/player.gd" type="Script" id=1]
 [ext_resource path="res://player/weapons/sword/sword.tscn" type="PackedScene" id=2]
+[ext_resource path="res://player/player_base_textures.png" type="Texture" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 16, 16 )
@@ -48,6 +49,10 @@ one_shot = true
 [node name="AttackTimer" type="Timer" parent="."]
 wait_time = 0.2
 one_shot = true
+
+[node name="PlayerBaseTextures" type="Sprite" parent="."]
+position = Vector2( -1, 0 )
+texture = ExtResource( 3 )
 
 [connection signal="timeout" from="StaggerTimer" to="." method="_on_StaggerTimer_timeout"]
 [connection signal="timeout" from="FlashTimer" to="." method="_on_FlashTimer_timeout"]
