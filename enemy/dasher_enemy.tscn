@@ -1,15 +1,17 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://enemy/enemy.gd" type="Script" id=1]
+[ext_resource path="res://enemy/dasher_enemy.gd" type="Script" id=1]
 [ext_resource path="res://enemy/enemy_base_texture.png" type="Texture" id=2]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 16.0
 
-[node name="Enemy" type="KinematicBody2D"]
+[node name="Dasher" type="KinematicBody2D"]
 collision_layer = 8
 collision_mask = 9
 script = ExtResource( 1 )
+speed = 130
+health = 1
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
 position = Vector2( 3.2, 4 )

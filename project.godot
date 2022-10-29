@@ -10,9 +10,24 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "KinematicBody2D",
+"class": "Dasher",
+"language": "GDScript",
+"path": "res://enemy/dasher_enemy.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "Ememy",
+"language": "GDScript",
+"path": "res://enemy/enemy.gd"
+}, {
+"base": "KinematicBody2D",
 "class": "Player",
 "language": "GDScript",
 "path": "res://player/player.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "Tank",
+"language": "GDScript",
+"path": "res://enemy/tank_enemy.gd"
 }, {
 "base": "Node2D",
 "class": "Weapon",
@@ -20,7 +35,10 @@ _global_script_classes=[ {
 "path": "res://player/weapons/weapon.gd"
 } ]
 _global_script_class_icons={
+"Dasher": "",
+"Ememy": "",
 "Player": "",
+"Tank": "",
 "Weapon": ""
 }
 
@@ -70,6 +88,11 @@ fullscreen_toggle={
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":70,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
  ]
 }
+enemy_hurt={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":75,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
 
 [layer_names]
 
@@ -84,4 +107,5 @@ common/enable_pause_aware_picking=true
 
 [rendering]
 
+quality/driver/driver_name="GLES2"
 environment/default_environment="res://default_env.tres"

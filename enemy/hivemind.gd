@@ -2,20 +2,24 @@ extends Node
 
 
 var rng = RandomNumberGenerator.new()
-var enemy = preload("res://enemy/enemy.tscn")
+var enemy = preload("res://enemy/dasher_enemy.tscn")
 
 
 func _ready():
+	rng.randomize()
 	$Timer.start()
+
 
 func _on_Timer_timeout():
 	_instance_enemy()
 	$Timer.start()
 
+
 func _instance_enemy():
 	var i = enemy.instance()
 	i.position = _random_point() + GlobalVars.player.position # add player offset
 	add_child(i)
+
 
 func _random_point(): # gets random point spawn_distance away
 	rng.randomize()
