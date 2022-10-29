@@ -1,10 +1,11 @@
 extends Node
 
-export var slot_number :int = 0 #set array value
-func _ready():
-	GlobalVars.connect("item_change", self, "initialize_item")
-	print("hi")
+export(Pickup.ItemType) var item_type
 
-func initialize_item(slot, texture):
-	if slot_number ==  slot:
-		$TextureRect.texture = load(texture)
+
+func _ready():
+	Global.connect("item_change", self, "initialize_item")
+
+func initialize_item(type, icon):
+	if type ==  item_type:
+		$TextureRect.texture = icon

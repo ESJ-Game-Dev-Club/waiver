@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://player/player.gd" type="Script" id=1]
-[ext_resource path="res://player/weapons/sword/sword.tscn" type="PackedScene" id=2]
+[ext_resource path="res://player/player.gd" type="Script" id=2]
 [ext_resource path="res://player/player_base_textures.png" type="Texture" id=3]
+[ext_resource path="res://player/states/normal.gd" type="Script" id=4]
+[ext_resource path="res://player/states/staggered.gd" type="Script" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 16, 16 )
@@ -13,7 +14,29 @@ extents = Vector2( 18, 18 )
 [node name="Player" type="KinematicBody2D"]
 collision_layer = 2
 collision_mask = 9
-script = ExtResource( 1 )
+script = ExtResource( 2 )
+initial_state = NodePath("States/Normal")
+
+[node name="States" type="Node2D" parent="."]
+
+[node name="Normal" type="Node2D" parent="States"]
+script = ExtResource( 4 )
+
+[node name="Staggered" type="Node2D" parent="States"]
+script = ExtResource( 5 )
+
+[node name="StaggerTimer" type="Timer" parent="States/Staggered"]
+wait_time = 2.0
+one_shot = true
+
+[node name="FlashTimer" type="Timer" parent="States/Staggered"]
+wait_time = 0.1
+
+[node name="Items" type="Node2D" parent="."]
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( -1, 0 )
+texture = ExtResource( 3 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
@@ -33,27 +56,13 @@ collision_mask = 8
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitDetection"]
 shape = SubResource( 2 )
 
-[node name="WeaponOrigin" type="Position2D" parent="."]
+[node name="PickupDetection" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 16
 
-[node name="Sword" parent="WeaponOrigin" instance=ExtResource( 2 )]
-position = Vector2( 32, 0 )
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PickupDetection"]
+shape = SubResource( 2 )
 
-[node name="StaggerTimer" type="Timer" parent="."]
-wait_time = 2.0
-one_shot = true
-
-[node name="FlashTimer" type="Timer" parent="."]
-wait_time = 0.1
-one_shot = true
-
-[node name="AttackTimer" type="Timer" parent="."]
-wait_time = 0.2
-one_shot = true
-
-[node name="PlayerBaseTextures" type="Sprite" parent="."]
-position = Vector2( -1, 0 )
-texture = ExtResource( 3 )
-
-[connection signal="timeout" from="StaggerTimer" to="." method="_on_StaggerTimer_timeout"]
-[connection signal="timeout" from="FlashTimer" to="." method="_on_FlashTimer_timeout"]
-[connection signal="timeout" from="AttackTimer" to="." method="_on_AttackTimer_timeout"]
+[connection signal="timeout" from="States/Staggered/StaggerTimer" to="States/Staggered" method="_on_StaggerTimer_timeout"]
+[connection signal="timeout" from="States/Staggered/FlashTimer" to="States/Staggered" method="_on_FlashTimer_timeout"]
+[connection signal="area_entered" from="PickupDetection" to="." method="_on_pickup"]

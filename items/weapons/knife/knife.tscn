@@ -1,26 +1,27 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://player/weapons/sword/sword.gd" type="Script" id=1]
+[ext_resource path="res://items/weapons/knife/knife.gd" type="Script" id=1]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 4, 24 )
+extents = Vector2( 16, 24 )
 
-[node name="Sword" type="Node2D"]
+[node name="Knife" type="Node2D"]
 script = ExtResource( 1 )
-normal_color = Color( 0.858824, 0.423529, 0.423529, 1 )
-attack_color = Color( 0.8, 0.101961, 0.101961, 1 )
-cooldown_color = Color( 0.490196, 0.407843, 0.611765, 1 )
+normal_color = Color( 0.796078, 0.560784, 0.372549, 1 )
+attack_color = Color( 0.827451, 0.176471, 0.176471, 1 )
+cooldown_color = Color( 0.317647, 0.517647, 0.596078, 1 )
 
 [node name="Area2D" type="Area2D" parent="."]
-collision_layer = 4
-collision_mask = 8
+position = Vector2( 36, 0 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( 12, 0 )
 shape = SubResource( 1 )
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
+position = Vector2( 36, 0 )
 color = Color( 0.858824, 0.423529, 0.423529, 1 )
-polygon = PoolVector2Array( -4, -24, 4, -24, 4, 24, -4, 24 )
+polygon = PoolVector2Array( -4, -24, 28, -24, 28, 0, 28, 24, -4, 24 )
 
 [node name="ColorTimer" type="Timer" parent="."]
 wait_time = 0.1

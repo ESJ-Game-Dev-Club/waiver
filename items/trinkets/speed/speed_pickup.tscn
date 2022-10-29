@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://items/pickup.tscn" type="PackedScene" id=1]
+[ext_resource path="res://items/trinkets/speed/feather.png" type="Texture" id=2]
+
+[node name="SpeedPickup" instance=ExtResource( 1 )]
+inventory_icon = ExtResource( 2 )
+item_scene_path = "res://items/trinkets/speed/speed.tscn"
+item_type = 2
+
+[node name="Sprite" parent="." index="1"]
+scale = Vector2( 0.225083, 0.225083 )
+texture = ExtResource( 2 )

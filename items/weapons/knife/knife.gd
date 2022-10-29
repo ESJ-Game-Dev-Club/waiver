@@ -1,4 +1,5 @@
-extends Weapon 
+extends Weapon
+
 
 var ready = true # for cooldown timer
 export(Color) var normal_color
@@ -6,8 +7,8 @@ export(Color) var attack_color
 export(Color) var cooldown_color
 
 
-func _ready():
-	atk_time = 0.1
+func _process(delta):
+	look_at(get_global_mouse_position())
 
 func fire() -> bool:
 	if ready:

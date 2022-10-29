@@ -3,63 +3,49 @@
 [ext_resource path="res://ui/inventory/inventory_panel.stylebox" type="StyleBox" id=1]
 [ext_resource path="res://ui/inventory/slot.gd" type="Script" id=2]
 
-[node name="Inventory" type="CanvasLayer"]
+[node name="Inventory" type="Control"]
 
 [node name="GridContainer" type="GridContainer" parent="."]
-margin_right = 256.0
-margin_bottom = 68.0
+margin_right = 200.0
+margin_bottom = 64.0
 columns = 4
 
-[node name="SlotW1" type="Panel" parent="GridContainer"]
+[node name="Weapon" type="Panel" parent="GridContainer"]
 margin_right = 64.0
 margin_bottom = 64.0
 rect_min_size = Vector2( 64, 64 )
 custom_styles/panel = ExtResource( 1 )
 script = ExtResource( 2 )
 
-[node name="TextureRect" type="TextureRect" parent="GridContainer/SlotW1"]
+[node name="TextureRect" type="TextureRect" parent="GridContainer/Weapon"]
 margin_right = 64.0
 margin_bottom = 64.0
 expand = true
 
-[node name="SlotW2" type="Panel" parent="GridContainer"]
+[node name="Special" type="Panel" parent="GridContainer"]
 margin_left = 68.0
 margin_right = 132.0
 margin_bottom = 64.0
 rect_min_size = Vector2( 64, 64 )
 custom_styles/panel = ExtResource( 1 )
 script = ExtResource( 2 )
-slot_number = 1
+item_type = 1
 
-[node name="TextureRect" type="TextureRect" parent="GridContainer/SlotW2"]
+[node name="TextureRect" type="TextureRect" parent="GridContainer/Special"]
 margin_right = 64.0
 margin_bottom = 64.0
 expand = true
 
-[node name="SlotM" type="Panel" parent="GridContainer"]
+[node name="Trinket" type="Panel" parent="GridContainer"]
 margin_left = 136.0
 margin_right = 200.0
 margin_bottom = 64.0
 rect_min_size = Vector2( 64, 64 )
 custom_styles/panel = ExtResource( 1 )
 script = ExtResource( 2 )
-slot_number = 2
+item_type = 2
 
-[node name="TextureRect" type="TextureRect" parent="GridContainer/SlotM"]
-margin_right = 64.0
-margin_bottom = 64.0
-expand = true
-
-[node name="SlotA" type="Panel" parent="GridContainer"]
-margin_left = 204.0
-margin_right = 268.0
-margin_bottom = 64.0
-rect_min_size = Vector2( 64, 64 )
-custom_styles/panel = ExtResource( 1 )
-script = ExtResource( 2 )
-slot_number = 3
-
-[node name="TextureRect" type="TextureRect" parent="GridContainer/SlotA"]
+[node name="TextureRect" type="TextureRect" parent="GridContainer/Trinket"]
 margin_right = 64.0
 margin_bottom = 64.0
 expand = true

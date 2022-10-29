@@ -1,6 +1,6 @@
 extends CanvasLayer
 
 
-func _process(delta):
-	$Control/Health.text = "Health: " + str(GlobalVars.player.health)
-	$Control/State.text = GlobalVars.player.States.keys()[GlobalVars.player.current_state]
+func _process(_delta):
+	$Control/Health.text = "Health: " + str(Global.player.health)
+	$Control/State.text = Global.player._state_name

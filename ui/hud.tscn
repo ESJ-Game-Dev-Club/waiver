@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://resources/default.tres" type="Theme" id=1]
 [ext_resource path="res://resources/VCR_OSD_MONO_1.001.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://ui/hud.gd" type="Script" id=3]
+[ext_resource path="res://ui/inventory/inventory.tscn" type="PackedScene" id=4]
 
 [sub_resource type="DynamicFont" id=1]
 size = 32
@@ -42,3 +43,5 @@ margin_bottom = -0.200005
 custom_fonts/font = SubResource( 1 )
 text = "NORMAL"
 valign = 1
+
+[node name="Inventory" parent="." instance=ExtResource( 4 )]

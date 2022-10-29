@@ -25,7 +25,7 @@ func _physics_process(delta):
 	if (health == 0): # enemy is dead
 		queue_free()
 
-	var player_distance = self.position.distance_to(GlobalVars.player.position)
+	var player_distance = self.position.distance_to(Global.player.position)
 	if (player_distance < 300):
 		current_state = EnemyState.CHASING
 		
@@ -53,4 +53,4 @@ func _on_Timer_timeout():
 
 func _player_direction() -> Vector2:
 	# gets direction to player
-	return (GlobalVars.player.position - position).normalized()
+	return (Global.player.position - position).normalized()
