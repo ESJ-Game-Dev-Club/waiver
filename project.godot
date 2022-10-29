@@ -15,7 +15,7 @@ _global_script_classes=[ {
 "path": "res://enemy/dasher_enemy.gd"
 }, {
 "base": "KinematicBody2D",
-"class": "Ememy",
+"class": "Enemy",
 "language": "GDScript",
 "path": "res://enemy/enemy.gd"
 }, {
@@ -44,7 +44,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://state_machine/state_machine.gd"
 }, {
-"base": "KinematicBody2D",
+"base": "Enemy",
 "class": "Tank",
 "language": "GDScript",
 "path": "res://enemy/tank_enemy.gd"
@@ -56,7 +56,7 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "Dasher": "",
-"Ememy": "",
+"Enemy": "",
 "Pickup": "",
 "Player": "",
 "PlayerState": "",

@@ -1,4 +1,4 @@
-extends "res://enemy/enemy.gd"
+extends Enemy
 
 
 class_name Tank

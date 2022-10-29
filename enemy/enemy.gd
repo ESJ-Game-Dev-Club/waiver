@@ -1,7 +1,7 @@
 extends KinematicBody2D
 
 
-class_name Ememy
+class_name Enemy
 
 enum EnemyState {
 	WANDER,
