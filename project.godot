@@ -9,7 +9,7 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "KinematicBody2D",
+"base": "Enemy",
 "class": "Dasher",
 "language": "GDScript",
 "path": "res://enemy/dasher_enemy.gd"
