@@ -15,7 +15,7 @@ The states are implemented using the engine's Node Tree
 The parent ```Enemy``` class is contained in ```res://enemy/enemy.gd```
 New enemy classes can inherit from this parent class by means of:
 ```gdscript
-extends "res://enemy/enemy.gd"
+extends Enemy
 ```
 
 ## Player
