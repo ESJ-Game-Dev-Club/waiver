@@ -27,4 +27,9 @@ texture = ExtResource( 2 )
 [node name="Timer" type="Timer" parent="."]
 autostart = true
 
+[node name="FlashTimer" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true
+
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="timeout" from="FlashTimer" to="." method="_on_FlashTimer_timeout"]

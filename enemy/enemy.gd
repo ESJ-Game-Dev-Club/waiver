@@ -20,6 +20,13 @@ func _ready():
 	rng.randomize()
 	$Timer.start()
 
+func hit(dmg):
+	health -= dmg
+	modulate = Color(8, 8, 8, 1)
+	$FlashTimer.start()
+
+func _on_FlashTimer_timeout():
+	modulate = Color(1, 1, 1, 1)
 
 func _physics_process(delta):
 	if (health == 0): # enemy is dead
@@ -54,3 +61,5 @@ func _on_Timer_timeout():
 func _player_direction() -> Vector2:
 	# gets direction to player
 	return (Global.player.position - position).normalized()
+
+
