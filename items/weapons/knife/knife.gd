@@ -16,7 +16,7 @@ func fire() -> bool:
 	if ready:
 		$Polygon2D.color = attack_color
 		for body in $Area2D.get_overlapping_bodies(): # kill
-			body.health -= 1*Global.player.atk_dmg_mult
+			body.hit(1 * Global.player.atk_dmg_mult)
 		ready = false
 		$ColorTimer.start()
 		return true
