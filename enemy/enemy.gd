@@ -62,9 +62,6 @@ func _player_direction() -> Vector2:
 	# gets direction to player
 	return (Global.player.position - position).normalized()
 
-<<<<<<< HEAD
+
 func _exit_tree():
 	Global.player.kill_count += 1
-=======
-
->>>>>>> deaa2e18e3c379d3f16e8438e9932f7489975557
