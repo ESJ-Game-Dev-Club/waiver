@@ -63,3 +63,5 @@ func _player_direction() -> Vector2:
 	return (Global.player.position - position).normalized()
 
 
+func _exit_tree():
+	Global.player.kill_count += 1

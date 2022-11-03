@@ -9,9 +9,11 @@ var health = 3
 
 var inventory_array: Array = [null, null, null] # weapon, special, trinket
 
-#wepon multiplier vars
+#weapon multiplier vars
 var atk_cooldown_mult = 1
 var atk_dmg_mult = 1
+
+var kill_count = 0
 
 func _unhandled_input(event):
 	_state.unhandled_input(event)
