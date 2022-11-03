@@ -54,3 +54,6 @@ func _on_Timer_timeout():
 func _player_direction() -> Vector2:
 	# gets direction to player
 	return (Global.player.position - position).normalized()
+
+func _exit_tree():
+	Global.player.kill_count += 1
