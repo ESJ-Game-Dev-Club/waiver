@@ -7,20 +7,27 @@ export(Color) var normal_color
 export(Color) var attack_color
 export(Color) var cooldown_color
 
+# func _ready():
+# 	Global.connect("item_change", self, "update_cooldown")
 
 func _process(delta):
 	look_at(get_global_mouse_position())
-	$CooldownTimer.wait_time = 0.9 * Global.player.atk_cooldown_mult
+	$CooldownTimer.wait_time = 0.9 * Global.player.get_modifier("cooldown")
+
 
 func fire() -> bool:
 	if ready:
 		$Polygon2D.color = attack_color
 		for body in $Area2D.get_overlapping_bodies(): # kill
-			body.hit(1 * Global.player.atk_dmg_mult)
+			body.hit(1 * Global.player.get_modifier("damage"))
 		ready = false
 		$ColorTimer.start()
 		return true
 	return false
+
+# func update_cooldown():
+# 	$CooldownTimer.wait_time = 0.9 * Global.player.get_modifier("cooldown")
+# 	print("test")
 
 func _on_ColorTimer_timeout(): # when done attacking, cool down
 	$Polygon2D.color = cooldown_color

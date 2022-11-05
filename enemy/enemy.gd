@@ -29,7 +29,7 @@ func _on_FlashTimer_timeout():
 	modulate = Color(1, 1, 1, 1)
 
 func _physics_process(delta):
-	if (health == 0): # enemy is dead
+	if (health <= 0): # enemy is dead
 		queue_free()
 
 	var player_distance = self.position.distance_to(Global.player.position)

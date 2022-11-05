@@ -46,4 +46,4 @@ func physics_process(_delta):
 		player.transition_to(player.get_node("States/Staggered"))
 		return
 	
-	player.move_and_slide(_get_input() * player.normal_speed)
+	player.move_and_slide(_get_input() * player.normal_speed * player.get_modifier("speed"))

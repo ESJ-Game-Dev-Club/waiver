@@ -47,3 +47,9 @@ func pickup_item(item_type, icon, scene_path):
 func _on_pickup(area):
 	if _state.has_method("on_pickup"):
 		_state.on_pickup(area)
+
+func get_modifier(modifier_type):
+	if inventory_array[2] == null or inventory_array[2].modifier_type != modifier_type:
+		return 1
+	else:
+		return inventory_array[2].modifier_value
