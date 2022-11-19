@@ -5,8 +5,8 @@ var price = 0
 
 func display():
 	price = owner.shop_prices[slot_no]
-	$Texture.texture = owner.shop_items[slot_no].inventory_icon
-	$ItemLabel.text = str(owner.shop_items[slot_no])
+	$Texture.texture = owner.items[slot_no].inventory_icon
+	$ItemLabel.text = str(owner.items[slot_no])
 	$ItemPrice.text = str(price) + " kills"
 
 
