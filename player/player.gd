@@ -5,7 +5,7 @@ extends StateMachine
 var normal_speed = 100
 var staggered_speed = 110 # makes it easy for player to escape
 
-var health = 3
+var health = 5
 
 var inventory_array: Array = [null, null, null] # weapon, special, trinket
 

@@ -1,36 +1,35 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://enemy/tank/enemy.gd" type="Script" id=1]
-[ext_resource path="res://enemy/enemy_base_texture.png" type="Texture" id=2]
+[ext_resource path="res://enemy/enemy.gd" type="Script" id=1]
+[ext_resource path="res://enemy/movement_scripts/chase.gd" type="Script" id=2]
+[ext_resource path="res://enemy/tank/chasing_state.gd" type="Script" id=3]
+[ext_resource path="res://tank.png" type="Texture" id=4]
 
-[sub_resource type="CircleShape2D" id=1]
-radius = 16.0
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 24, 16 )
 
-[node name="Tank" type="KinematicBody2D"]
+[node name="Enemy" type="KinematicBody2D"]
 collision_layer = 8
 collision_mask = 9
 script = ExtResource( 1 )
-speed = 50
+initial_state = NodePath("States/Chasing")
 health = 5
+knockback = 100
 
-[node name="Polygon2D" type="Polygon2D" parent="."]
-position = Vector2( 3.2, 4 )
-scale = Vector2( 0.8, 0.833333 )
-color = Color( 0.780392, 0.0352941, 0.262745, 1 )
-polygon = PoolVector2Array( -19, -19.2, -4, -24, 11, -19.2, 16, -4.8, 11, 9.6, -4, 14.4, -19, 9.6, -24, -4.8 )
+[node name="States" type="Node" parent="."]
+
+[node name="Chasing" type="Node2D" parent="States"]
+script = ExtResource( 3 )
+
+[node name="Chase" type="Node" parent="States/Chasing"]
+script = ExtResource( 2 )
+acceleration = 5
+max_speed = 80
+
+[node name="Sprite" type="Sprite" parent="."]
+scale = Vector2( 0.0859799, 0.0859799 )
+texture = ExtResource( 4 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 8 )
 shape = SubResource( 1 )
-
-[node name="EnemyBaseTexture" type="Sprite" parent="."]
-position = Vector2( 0, 1 )
-texture = ExtResource( 2 )
-
-[node name="Timer" type="Timer" parent="."]
-autostart = true
-
-[node name="FlashTimer" type="Timer" parent="."]
-wait_time = 0.1
-autostart = true
-
-[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

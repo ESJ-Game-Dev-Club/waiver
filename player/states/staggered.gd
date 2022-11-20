@@ -1,7 +1,7 @@
 extends PlayerState
 
 
-func unhandled_input(event): # prevent the player from attacking when staggered
+func unhandled_input(_event): # prevent the player from attacking when staggered
 	pass
 
 func physics_process(_delta):

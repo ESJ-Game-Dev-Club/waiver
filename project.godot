@@ -9,15 +9,20 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "Enemy",
-"class": "Dasher",
-"language": "GDScript",
-"path": "res://enemy/dasher/enemy.gd"
-}, {
-"base": "KinematicBody2D",
+"base": "StateMachine",
 "class": "Enemy",
 "language": "GDScript",
 "path": "res://enemy/enemy.gd"
+}, {
+"base": "State",
+"class": "EnemyState",
+"language": "GDScript",
+"path": "res://enemy/enemy_state.gd"
+}, {
+"base": "Node",
+"class": "MovementScript",
+"language": "GDScript",
+"path": "res://enemy/movement_scripts/movement_script.gd"
 }, {
 "base": "Area2D",
 "class": "Pickup",
@@ -44,25 +49,20 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://state_machine/state_machine.gd"
 }, {
-"base": "Enemy",
-"class": "Tank",
-"language": "GDScript",
-"path": "res://enemy/tank/enemy.gd"
-}, {
 "base": "Node2D",
 "class": "Weapon",
 "language": "GDScript",
 "path": "res://items/weapon.gd"
 } ]
 _global_script_class_icons={
-"Dasher": "",
 "Enemy": "",
+"EnemyState": "",
+"MovementScript": "",
 "Pickup": "",
 "Player": "",
 "PlayerState": "",
 "State": "",
 "StateMachine": "",
-"Tank": "",
 "Weapon": ""
 }
 
