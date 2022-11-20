@@ -11,7 +11,9 @@ enum EnemyState {
 var rng = RandomNumberGenerator.new()
 
 export var speed: int = 75
-export var health = 3
+export var health: int = 3
+export var damage: int = 1
+
 var stagger: int
 var current_state = EnemyState.WANDER
 
@@ -35,7 +37,7 @@ func _physics_process(delta):
 	var player_distance = self.position.distance_to(Global.player.position)
 	if (player_distance < 300):
 		current_state = EnemyState.CHASING
-		
+
 	match(current_state):
 		EnemyState.WANDER: self.wander()
 		EnemyState.CHASING: self.chase()
@@ -47,7 +49,7 @@ func _input(event):
 
 
 func wander():
-	move_and_slide(_player_direction().rotated(stagger) * (speed * 0.4))
+	move_and_slide(_player_direction().rotated(stagger) * (speed * 0.55))
 
 
 func chase():

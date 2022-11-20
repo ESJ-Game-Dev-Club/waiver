@@ -13,7 +13,7 @@ export(Color) var cooldown_color
 func _process(_delta):
 	look_at(get_global_mouse_position())
 	$CooldownTimer.wait_time = 0.9 * Global.player.get_modifier("cooldown")
-
+ 
 
 func fire() -> bool:
 	if !ready:
