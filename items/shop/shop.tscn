@@ -1,0 +1,213 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://items/shop/shop.gd" type="Script" id=1]
+[ext_resource path="res://items/shop/shop.png" type="Texture" id=2]
+[ext_resource path="res://resources/default.tres" type="Theme" id=3]
+[ext_resource path="res://ui/inventory/inventory_panel.stylebox" type="StyleBox" id=4]
+[ext_resource path="res://items/shop/shop_item.gd" type="Script" id=5]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 64, 64 )
+
+[sub_resource type="Animation" id=2]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, -550 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "shop_trans_in"
+length = 0.17
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.17 ),
+"transitions": PoolRealArray( 1, 0.5 ),
+"update": 0,
+"values": [ Vector2( 0, -550 ), Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "shop_trans_out"
+length = 0.17
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.17 ),
+"transitions": PoolRealArray( 1, 9.51364 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 550 ) ]
+}
+
+[node name="Shop" type="Area2D"]
+script = ExtResource( 1 )
+shop_items = [ "res://items/trinkets/damage/damage_pickup.tscn", "res://items/trinkets/damage/damage_pickup.tscn", "res://items/trinkets/damage/damage_pickup.tscn" ]
+shop_prices = [ 1, 1, 1 ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 64, 64 )
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 64, 64 )
+scale = Vector2( 1.12281, 1 )
+texture = ExtResource( 2 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+pause_mode = 2
+layer = 0
+offset = Vector2( 0, -550 )
+transform = Transform2D( 1, 0, 0, 1, 0, -550 )
+
+[node name="BackgroundPanel" type="Panel" parent="CanvasLayer"]
+anchor_left = 0.062
+anchor_top = 0.107
+anchor_right = 0.937
+anchor_bottom = 0.853
+margin_left = 0.511997
+margin_top = -0.200005
+margin_right = 0.511963
+margin_bottom = 0.199982
+theme = ExtResource( 3 )
+
+[node name="Anim" type="AnimationPlayer" parent="CanvasLayer"]
+anims/RESET = SubResource( 2 )
+anims/shop_trans_in = SubResource( 3 )
+anims/shop_trans_out = SubResource( 4 )
+
+[node name="CloseButton" type="Button" parent="CanvasLayer"]
+margin_left = 840.0
+margin_top = 72.0
+margin_right = 952.0
+margin_bottom = 104.0
+theme = ExtResource( 3 )
+text = "Close"
+
+[node name="Items" type="Control" parent="CanvasLayer"]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="Item1" type="Panel" parent="CanvasLayer/Items"]
+margin_left = 128.0
+margin_top = 128.0
+margin_right = 192.0
+margin_bottom = 192.0
+custom_styles/panel = ExtResource( 4 )
+script = ExtResource( 5 )
+
+[node name="ItemLabel" type="Label" parent="CanvasLayer/Items/Item1"]
+margin_left = 72.0
+margin_top = 8.0
+margin_right = 200.0
+margin_bottom = 40.0
+
+[node name="ItemPrice" type="Label" parent="CanvasLayer/Items/Item1"]
+margin_left = 8.0
+margin_top = 64.0
+margin_right = 56.0
+margin_bottom = 88.0
+
+[node name="ItemBuy" type="Button" parent="CanvasLayer/Items/Item1"]
+margin_left = 256.0
+margin_top = 8.0
+margin_right = 384.0
+margin_bottom = 56.0
+theme = ExtResource( 3 )
+text = "Buy"
+
+[node name="Texture" type="TextureRect" parent="CanvasLayer/Items/Item1"]
+margin_right = 64.0
+margin_bottom = 64.0
+expand = true
+
+[node name="Item2" type="Panel" parent="CanvasLayer/Items"]
+margin_left = 128.0
+margin_top = 256.0
+margin_right = 192.0
+margin_bottom = 320.0
+custom_styles/panel = ExtResource( 4 )
+script = ExtResource( 5 )
+slot_no = 1
+
+[node name="ItemLabel" type="Label" parent="CanvasLayer/Items/Item2"]
+margin_left = 72.0
+margin_top = 8.0
+margin_right = 200.0
+margin_bottom = 40.0
+
+[node name="ItemPrice" type="Label" parent="CanvasLayer/Items/Item2"]
+margin_left = 8.0
+margin_top = 64.0
+margin_right = 56.0
+margin_bottom = 88.0
+
+[node name="ItemBuy" type="Button" parent="CanvasLayer/Items/Item2"]
+margin_left = 256.0
+margin_top = 8.0
+margin_right = 384.0
+margin_bottom = 56.0
+theme = ExtResource( 3 )
+text = "Buy"
+
+[node name="Texture" type="TextureRect" parent="CanvasLayer/Items/Item2"]
+margin_right = 64.0
+margin_bottom = 64.0
+expand = true
+
+[node name="Item3" type="Panel" parent="CanvasLayer/Items"]
+margin_left = 128.0
+margin_top = 384.0
+margin_right = 192.0
+margin_bottom = 448.0
+custom_styles/panel = ExtResource( 4 )
+script = ExtResource( 5 )
+slot_no = 2
+
+[node name="ItemLabel" type="Label" parent="CanvasLayer/Items/Item3"]
+margin_left = 72.0
+margin_top = 8.0
+margin_right = 200.0
+margin_bottom = 40.0
+
+[node name="ItemPrice" type="Label" parent="CanvasLayer/Items/Item3"]
+margin_left = 8.0
+margin_top = 64.0
+margin_right = 56.0
+margin_bottom = 88.0
+
+[node name="ItemBuy" type="Button" parent="CanvasLayer/Items/Item3"]
+margin_left = 256.0
+margin_top = 8.0
+margin_right = 384.0
+margin_bottom = 56.0
+theme = ExtResource( 3 )
+text = "Buy"
+
+[node name="Texture" type="TextureRect" parent="CanvasLayer/Items/Item3"]
+margin_right = 64.0
+margin_bottom = 64.0
+expand = true
+
+[connection signal="body_entered" from="." to="." method="_on_Shop_body_entered"]
+[connection signal="animation_finished" from="CanvasLayer/Anim" to="." method="_on_Anim_animation_finished"]
+[connection signal="pressed" from="CanvasLayer/CloseButton" to="." method="_on_CloseButton_pressed"]
+[connection signal="pressed" from="CanvasLayer/Items/Item1/ItemBuy" to="CanvasLayer/Items/Item1" method="_on_ItemBuy_pressed"]
+[connection signal="pressed" from="CanvasLayer/Items/Item2/ItemBuy" to="CanvasLayer/Items/Item2" method="_on_ItemBuy_pressed"]
+[connection signal="pressed" from="CanvasLayer/Items/Item3/ItemBuy" to="CanvasLayer/Items/Item3" method="_on_ItemBuy_pressed"]
