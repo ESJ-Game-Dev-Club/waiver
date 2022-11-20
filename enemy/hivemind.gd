@@ -5,7 +5,7 @@ var rng = RandomNumberGenerator.new()
 var enemy_count = 0
 
 enum Enemy {
-	REG,
+	REGULAR,
 	DASHER,
 	TANK,
 }
@@ -24,10 +24,9 @@ func _on_Timer_timeout():
 
 
 func _spawn_enemy(enemy_type: int):
-	var enemy = preload("res://enemy/enemy.tscn")
-	
+	var enemy
 	match (enemy_type):
-		Enemy.REG: enemy = preload("res://enemy/enemy.tscn")
+		Enemy.REGULAR: enemy = preload("res://enemy/regular/enemy.tscn")
 		Enemy.DASHER: enemy = preload("res://enemy/dasher/enemy.tscn")
 		Enemy.TANK: enemy = preload("res://enemy/tank/enemy.tscn")
 
@@ -39,7 +38,7 @@ func _spawn_enemy(enemy_type: int):
 func new_wave():
 	enemy_count += 5
 	
-	for i in range(enemy_count):
+	for _i in range(enemy_count):
 		var type = rng.randi_range(0, 2)
 		_spawn_enemy(type)
 
