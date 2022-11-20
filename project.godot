@@ -12,7 +12,7 @@ _global_script_classes=[ {
 "base": "Enemy",
 "class": "Dasher",
 "language": "GDScript",
-"path": "res://enemy/dasher/dasher_enemy.gd"
+"path": "res://enemy/dasher/enemy.gd"
 }, {
 "base": "KinematicBody2D",
 "class": "Enemy",
@@ -47,7 +47,7 @@ _global_script_classes=[ {
 "base": "Enemy",
 "class": "Tank",
 "language": "GDScript",
-"path": "res://enemy/tank/tank_enemy.gd"
+"path": "res://enemy/tank/enemy.gd"
 }, {
 "base": "Node2D",
 "class": "Weapon",
