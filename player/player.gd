@@ -2,10 +2,13 @@ class_name Player
 extends StateMachine
 
 
-var normal_speed = 100
-var staggered_speed = 110 # makes it easy for player to escape
+var normal_speed: int = 100
+var normal_accel: int = 20
+var staggered_speed: int = 125 # makes it easy for player to escape
+var staggered_accel: int = 50
+var velocity: Vector2 = Vector2.ZERO
 
-var health = 5
+var health: int = 5
 
 var inventory_array: Array = [null, null, null] # weapon, special, trinket
 
@@ -13,7 +16,7 @@ var inventory_array: Array = [null, null, null] # weapon, special, trinket
 var atk_cooldown_mult = 1
 var atk_dmg_mult = 1
 
-var kill_count = 0
+var kill_count: int = 0
 
 func _unhandled_input(event):
 	_state.unhandled_input(event)

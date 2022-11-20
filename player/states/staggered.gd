@@ -5,7 +5,8 @@ func unhandled_input(_event): # prevent the player from attacking when staggered
 	pass
 
 func physics_process(_delta):
-	player.move_and_slide(_get_input() * player.staggered_speed)
+	player.velocity += _get_move(_get_input(), player.staggered_accel * player.get_modifier("speed"), player.staggered_speed * player.get_modifier("speed"))
+	player.velocity = player.move_and_slide(player.velocity)
 
 func enter():
 	$StaggerTimer.start()

@@ -25,5 +25,5 @@ func run(delta):
 		rng.randomize()
 		direction = direction.rotated(deg2rad(rng.randf_range(-90, 90))) # rotate em
 	
-	enemy.velocity += _get_move(enemy.velocity, direction, acceleration, max_speed)
+	enemy.velocity += _get_move(direction, acceleration, max_speed)
 	enemy.velocity = enemy.move_and_slide(enemy.velocity)

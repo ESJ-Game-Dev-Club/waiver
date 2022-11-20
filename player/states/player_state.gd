@@ -46,4 +46,12 @@ func physics_process(_delta):
 		player.transition_to(player.get_node("States/Staggered"))
 		return
 	
-	player.move_and_slide(_get_input() * player.normal_speed * player.get_modifier("speed"))
+	player.velocity += _get_move(_get_input(), player.normal_accel * player.get_modifier("speed"), player.normal_speed * player.get_modifier("speed"))
+	player.velocity = player.move_and_slide(player.velocity)
+
+
+func _get_move(direction: Vector2, acceleration: int, max_speed: int):
+	var goal = direction * max_speed # the desired direction
+	var to_goal = goal - player.velocity # direction from velocity to desired direction
+	var accel_speed = min(acceleration, to_goal.length()) # clamp the speed
+	return to_goal.normalized() * accel_speed # return the movement
