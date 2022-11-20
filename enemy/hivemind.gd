@@ -2,9 +2,14 @@ extends Node
 
 
 var rng = RandomNumberGenerator.new()
-var enemy = preload("res://enemy/enemy.tscn")
-
 var enemy_count = 0
+
+enum {
+	ENEMY_REG,
+	ENEMY_DASHER,
+	ENEMY_TANK,
+}
+
 
 func _ready():
 	rng.randomize()
@@ -18,7 +23,14 @@ func _on_Timer_timeout():
 	$Timer.start()
 
 
-func _spawn_enemy():
+func _spawn_enemy(enemy_type: int):
+	var enemy = preload("res://enemy/enemy.tscn")
+	
+	match (enemy_type):
+		ENEMY_REG: enemy = preload("res://enemy/enemy.tscn")
+		ENEMY_DASHER: enemy = preload("res://enemy/dasher/dasher_enemy.tscn")
+		ENEMY_TANK: enemy = preload("res://enemy/tank/tank_enemy.tscn")
+
 	var e = enemy.instance()
 	e.position = _random_point() + Global.player.position # add player offset
 	add_child(e)
@@ -28,7 +40,8 @@ func new_wave():
 	enemy_count += 5
 	
 	for i in range(enemy_count):
-		_spawn_enemy()
+		var type = rng.randi_range(1, 3)
+		_spawn_enemy(type)
 
 
 func _random_point(): # gets random point spawn_distance away
