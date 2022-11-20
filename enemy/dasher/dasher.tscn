@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://enemy/enemy.gd" type="Script" id=1]
-[ext_resource path="res://enemy/movement_scripts/chase.gd" type="Script" id=2]
+[ext_resource path="res://enemy/movement_scripts/chase.gd" type="Script" id=1]
+[ext_resource path="res://enemy/enemy.gd" type="Script" id=2]
 [ext_resource path="res://enemy/dasher/troll.png" type="Texture" id=3]
 [ext_resource path="res://enemy/dasher/chasing_state.gd" type="Script" id=4]
 
@@ -11,7 +11,7 @@ radius = 16.0
 [node name="Dasher" type="KinematicBody2D"]
 collision_layer = 8
 collision_mask = 9
-script = ExtResource( 1 )
+script = ExtResource( 2 )
 initial_state = NodePath("States/Chasing")
 health = 1
 knockback = 800
@@ -22,7 +22,7 @@ knockback = 800
 script = ExtResource( 4 )
 
 [node name="Chase" type="Node" parent="States/Chasing"]
-script = ExtResource( 2 )
+script = ExtResource( 1 )
 acceleration = 60
 max_speed = 120
 

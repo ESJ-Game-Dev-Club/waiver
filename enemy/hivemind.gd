@@ -26,9 +26,9 @@ func _on_Timer_timeout():
 func _spawn_enemy(enemy_type: int):
 	var enemy
 	match (enemy_type):
-		Enemy.REGULAR: enemy = preload("res://enemy/regular/enemy.tscn")
-		Enemy.DASHER: enemy = preload("res://enemy/dasher/enemy.tscn")
-		Enemy.TANK: enemy = preload("res://enemy/tank/enemy.tscn")
+		Enemy.REGULAR: enemy = preload("res://enemy/regular/regular.tscn")
+		Enemy.DASHER: enemy = preload("res://enemy/dasher/dasher.tscn")
+		Enemy.TANK: enemy = preload("res://enemy/tank/tank.tscn")
 
 	var e = enemy.instance()
 	e.position = _random_point() + Global.player.position # add player offset
