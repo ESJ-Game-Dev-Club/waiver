@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://player/states/player_state.gd" type="Script" id=1]
 [ext_resource path="res://player/player.gd" type="Script" id=2]
@@ -11,7 +11,11 @@ extents = Vector2( 16, 16 )
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 20, 20 )
 
+[sub_resource type="CircleShape2D" id=3]
+radius = 512.062
+
 [node name="Player" type="KinematicBody2D"]
+z_index = 10
 collision_layer = 2
 collision_mask = 9
 script = ExtResource( 2 )
@@ -62,6 +66,13 @@ collision_mask = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PickupDetection"]
 shape = SubResource( 2 )
+
+[node name="SpawnRange" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SpawnRange"]
+shape = SubResource( 3 )
 
 [connection signal="timeout" from="States/Staggered/StaggerTimer" to="States/Staggered" method="_on_StaggerTimer_timeout"]
 [connection signal="timeout" from="States/Staggered/FlashTimer" to="States/Staggered" method="_on_FlashTimer_timeout"]

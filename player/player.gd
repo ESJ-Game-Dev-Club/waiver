@@ -55,3 +55,6 @@ func get_modifier(modifier_type):
 	if inventory_array[2] == null or inventory_array[2].modifier_type != modifier_type:
 		return 1
 	return inventory_array[2].modifier_value
+
+func get_spawns() -> Array: # get all enemy spawnpoints that overlap the SpawnRange area
+	return $SpawnRange.get_overlapping_areas()

@@ -6,59 +6,55 @@
 [ext_resource path="res://enemy/hivemind.gd" type="Script" id=4]
 [ext_resource path="res://main.gd" type="Script" id=5]
 [ext_resource path="res://items/trinkets/speed/speed_pickup.tscn" type="PackedScene" id=6]
-[ext_resource path="res://items/trinkets/damage/damage_pickup.tscn" type="PackedScene" id=7]
 [ext_resource path="res://items/trinkets/attack_cooldown/attack_cooldown_pickup.tscn" type="PackedScene" id=8]
 [ext_resource path="res://items/shop/shop.tscn" type="PackedScene" id=9]
+[ext_resource path="res://world/world.tscn" type="PackedScene" id=10]
 
 [node name="Main" type="Node"]
 script = ExtResource( 5 )
 
-[node name="Player" parent="." instance=ExtResource( 1 )]
+[node name="Hud" parent="." instance=ExtResource( 3 )]
+
+[node name="World" parent="." instance=ExtResource( 10 )]
 
 [node name="Pickups" type="Node" parent="."]
 
 [node name="KnifePickup" parent="Pickups" instance=ExtResource( 2 )]
-position = Vector2( 307, 174 )
+position = Vector2( -112, -671 )
 
 [node name="KnifePickup2" parent="Pickups" instance=ExtResource( 2 )]
-position = Vector2( -160, -82 )
+position = Vector2( -101, 102 )
 
 [node name="KnifePickup3" parent="Pickups" instance=ExtResource( 2 )]
-position = Vector2( -1, 300 )
+position = Vector2( 31, -891 )
 
 [node name="SpeedPickup" parent="Pickups" instance=ExtResource( 6 )]
-position = Vector2( -193, 204 )
+position = Vector2( 378, -875 )
 
 [node name="SpeedPickup2" parent="Pickups" instance=ExtResource( 6 )]
-position = Vector2( 98, 141 )
+position = Vector2( 93, -335 )
 
 [node name="SpeedPickup3" parent="Pickups" instance=ExtResource( 6 )]
-position = Vector2( 492, -124 )
+position = Vector2( -329, -994 )
 
 [node name="AttackCooldownPickup" parent="Pickups" instance=ExtResource( 8 )]
-position = Vector2( 527, 377 )
+position = Vector2( -860, -1586 )
 
 [node name="AttackCooldownPickup2" parent="Pickups" instance=ExtResource( 8 )]
-position = Vector2( 59, 461 )
+position = Vector2( -48, -2036 )
 
 [node name="AttackCooldownPickup3" parent="Pickups" instance=ExtResource( 8 )]
-position = Vector2( -78, 166 )
+position = Vector2( 679, -1367 )
 
-[node name="DamagePickup" parent="Pickups" instance=ExtResource( 7 )]
-position = Vector2( 310, 374 )
-
-[node name="DamagePickup2" parent="Pickups" instance=ExtResource( 7 )]
-position = Vector2( 565, 499 )
-
-[node name="Hud" parent="." instance=ExtResource( 3 )]
+[node name="Player" parent="." instance=ExtResource( 1 )]
 
 [node name="Hivemind" type="Node" parent="."]
 script = ExtResource( 4 )
 
-[node name="Timer" type="Timer" parent="Hivemind"]
-wait_time = 15.0
+[node name="WaveTimer" type="Timer" parent="Hivemind"]
+wait_time = 5.0
 
 [node name="Shop" parent="." instance=ExtResource( 9 )]
-position = Vector2( 576, 64 )
+position = Vector2( -74, -1359 )
 
-[connection signal="timeout" from="Hivemind/Timer" to="Hivemind" method="_on_Timer_timeout"]
+[connection signal="timeout" from="Hivemind/WaveTimer" to="Hivemind" method="_on_WaveTimer_timeout"]
