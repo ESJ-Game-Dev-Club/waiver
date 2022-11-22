@@ -46,6 +46,8 @@ position = Vector2( -48, -2036 )
 [node name="AttackCooldownPickup3" parent="Pickups" instance=ExtResource( 8 )]
 position = Vector2( 679, -1367 )
 
+[node name="Projeciles" type="Node" parent="."]
+
 [node name="Player" parent="." instance=ExtResource( 1 )]
 
 [node name="Hivemind" type="Node" parent="."]
@@ -56,5 +58,7 @@ wait_time = 5.0
 
 [node name="Shop" parent="." instance=ExtResource( 9 )]
 position = Vector2( -74, -1359 )
+shop_items = [ "res://items/trinkets/damage/damage_pickup.tscn", "res://items/abilities/bomb/bomb_pickup.tscn", "res://items/trinkets/damage/damage_pickup.tscn" ]
+shop_prices = [ 1, 30, 1 ]
 
 [connection signal="timeout" from="Hivemind/WaveTimer" to="Hivemind" method="_on_WaveTimer_timeout"]
