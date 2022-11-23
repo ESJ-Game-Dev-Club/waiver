@@ -46,7 +46,7 @@ position = Vector2( -48, -2036 )
 [node name="AttackCooldownPickup3" parent="Pickups" instance=ExtResource( 8 )]
 position = Vector2( 679, -1367 )
 
-[node name="Projeciles" type="Node" parent="."]
+[node name="Projectiles" type="Node" parent="."]
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 
