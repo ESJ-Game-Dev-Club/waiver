@@ -16,7 +16,7 @@ func fire() -> bool:
 	var p = projectile.instance()
 	p.set_direction(projectile_direction)
 	p.position = Global.player.position
-	get_node("/root/Main/Projeciles").add_child(p)
+	get_node("/root/Main/Projectiles").add_child(p)
 
 	$CooldownTimer.start()
 	ready = false
