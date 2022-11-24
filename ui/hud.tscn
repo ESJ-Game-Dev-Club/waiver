@@ -62,5 +62,18 @@ custom_fonts/font = SubResource( 2 )
 text = "Kills: 0"
 valign = 1
 
+[node name="EnemyCount" type="Label" parent="Control"]
+anchor_left = 0.813
+anchor_top = -6.4
+anchor_right = 1.0
+anchor_bottom = -6.0
+margin_left = -0.511963
+margin_top = 32.0
+margin_right = 6.10352e-05
+margin_bottom = 32.0
+custom_fonts/font = SubResource( 2 )
+text = "Enemies: 0"
+valign = 1
+
 [node name="Inventory" parent="." instance=ExtResource( 4 )]
 mouse_filter = 2
