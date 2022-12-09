@@ -9,7 +9,7 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "StateMachine",
+"base": "KinematicBody2D",
 "class": "Enemy",
 "language": "GDScript",
 "path": "res://enemy/enemy.gd"
@@ -76,11 +76,6 @@ config/icon="res://icon.png"
 
 Global="*res://global.tscn"
 
-[display]
-
-window/stretch/mode="viewport"
-window/stretch/aspect="expand"
-
 [gui]
 
 common/drop_mouse_on_gui_input_disabled=true
@@ -127,6 +122,16 @@ enemy_hurt={
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":75,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
  ]
 }
+zoom_in={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":61,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+zoom_out={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":45,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
 
 [layer_names]
 
@@ -135,7 +140,6 @@ enemy_hurt={
 2d_physics/layer_3="weapon"
 2d_physics/layer_4="enemy"
 2d_physics/layer_5="pickup"
-2d_physics/layer_6="spawn"
 
 [physics]
 
@@ -144,5 +148,4 @@ common/enable_pause_aware_picking=true
 [rendering]
 
 quality/driver/driver_name="GLES2"
-2d/snapping/use_gpu_pixel_snap=true
 environment/default_environment="res://default_env.tres"

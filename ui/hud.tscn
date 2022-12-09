@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://resources/default.tres" type="Theme" id=1]
 [ext_resource path="res://resources/VCR_OSD_MONO_1.001.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://ui/hud.gd" type="Script" id=3]
 [ext_resource path="res://ui/inventory/inventory.tscn" type="PackedScene" id=4]
+[ext_resource path="res://ui/minimap.gd" type="Script" id=5]
 
 [sub_resource type="DynamicFont" id=1]
 size = 32
@@ -51,29 +52,36 @@ text = "NORMAL"
 valign = 1
 
 [node name="KillCount" type="Label" parent="Control"]
-anchor_left = 0.813
+anchor_left = 1.0
 anchor_top = -6.4
 anchor_right = 1.0
-anchor_bottom = -6.0
-margin_left = -0.511963
+anchor_bottom = -6.4
+margin_left = -192.0
+margin_top = 96.0
 margin_right = 6.10352e-05
-margin_bottom = 3.05176e-05
+margin_bottom = 128.0
 custom_fonts/font = SubResource( 2 )
 text = "Kills: 0"
 valign = 1
 
 [node name="EnemyCount" type="Label" parent="Control"]
-anchor_left = 0.813
+anchor_left = 1.0
 anchor_top = -6.4
 anchor_right = 1.0
-anchor_bottom = -6.0
-margin_left = -0.511963
-margin_top = 32.0
+anchor_bottom = -6.4
+margin_left = -192.0
+margin_top = 128.0
 margin_right = 6.10352e-05
-margin_bottom = 32.0
+margin_bottom = 160.0
 custom_fonts/font = SubResource( 2 )
 text = "Enemies: 0"
 valign = 1
 
 [node name="Inventory" parent="." instance=ExtResource( 4 )]
 mouse_filter = 2
+
+[node name="Minimap" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 5 )
+cell_colors = [ Color( 0.00392157, 0.639216, 0.180392, 1 ) ]
