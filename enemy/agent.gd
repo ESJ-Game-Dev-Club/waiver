@@ -1,34 +1,90 @@
 class_name Agent
 extends Area2D
 
+
 var velocity := Vector2.ZERO
 var acceleration := 30
-var max_speed := 100
-var view_distance = 200
-var separation_distance = 70
-var separation_weight = 0.4
+var max_speed := 90
+var view_distance = 200 # max view distance that the agent can see other agents
 
 
 func _ready():
 	velocity = Vector2(0, 30).rotated(rand_range(0, 360))
 
 func _physics_process(delta):
-	var steering = Vector2.ZERO
-	var neighbors = get_neighbors(view_distance)
+	var nearby: Array = get_closest(Global.hivemind.agents, view_distance) # filters out which neighbors are closest
 	
-	var separation := Vector2.ZERO
+	# steering += _behavior() * weighting + ...
+	var steering := Vector2.ZERO
+	
+	# boid model
+	steering += _cohesion(nearby, 200) * 0.003 + _alignment(nearby, 200) * 0.01 + _separation(nearby, 32) * 0.005
+	
+	# go towards player
+	if Input.is_action_pressed("fire"):
+		steering += _seek(Global.player.position) * 0.1
+	
+	# clamp the steering and velocity
+	steering = steering.clamped(acceleration)
+	velocity += steering
+	velocity = velocity.clamped(max_speed)
+	
+	# move the agent
+	position += velocity * delta
+
+func _seek(target: Vector2):
+	var desired_velocity = (target - position).normalized() * max_speed
+	return desired_velocity - velocity
+
+# calculate the average position and apply weighting
+func _cohesion(nearby: Array, distance):
+	var neighbors = get_closest(nearby, distance) # gets neighbors within certain range
+	if neighbors.size() == 0:
+		return Vector2.ZERO
+	
+	# average all neighboring agent's positions
+	var average_position = Vector2.ZERO
 	for neighbor in neighbors:
-		if position.distance_to(neighbor.position) <= separation_distance:
-			separation += (position - neighbor.position).normalized()
-	steering += separation * separation_weight
+		average_position += neighbor.position
+	average_position.x /= neighbors.size()
+	average_position.y /= neighbors.size()
 	
-	velocity = steering.clamped(acceleration)
-	position += velocity.clamped(max_speed) * delta
+	# direction to center
+	return average_position - position
+
+# calculate the average velocity and apply weighting
+func _alignment(nearby: Array, distance):
+	var neighbors = get_closest(nearby, distance)
+	if neighbors.size() == 0:
+		return Vector2.ZERO
+	
+	# average up all neighboring agent's velocities
+	var average_velocity = Vector2.ZERO
+	for neighbor in neighbors:
+		average_velocity += neighbor.velocity
+	average_velocity.x /= neighbors.size()
+	average_velocity.y /= neighbors.size()
+	
+	# direction to average direction
+	return average_velocity - velocity
+
+# steer away from nearby agents
+func _separation(nearby: Array, distance):
+	var neighbors = get_closest(nearby, distance)
+	if neighbors.size() == 0:
+		return Vector2.ZERO
+	
+	var closeness = Vector2.ZERO
+	for neighbor in neighbors:
+		var magnitude = distance - position.distance_to(neighbor.position)
+		closeness += (position - neighbor.position) * magnitude
+	
+	return closeness
 
 
-func get_neighbors(distance):
+func get_closest(nodes, distance):
 	var neighbors: Array = []
-	for agent in Global.hivemind.agents:
-		if position.distance_to(agent.position) <= distance and position != agent.position:
-			neighbors.append(agent)
+	for node in nodes:
+		if position.distance_to(node.position) <= distance and position != node.position:
+			neighbors.append(node)
 	return neighbors
