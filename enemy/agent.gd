@@ -1,6 +1,9 @@
 class_name Agent
-extends Area2D
+extends KinematicBody2D
 
+
+var current_update := 1
+var update_mod := 5
 
 var velocity := Vector2.ZERO
 var acceleration := 30
@@ -11,11 +14,12 @@ var view_distance = 200 # max view distance that the agent can see other agents
 func _ready():
 	velocity = Vector2(0, 30).rotated(rand_range(0, 360))
 
-func _physics_process(delta):
-	var nearby: Array = get_closest(Global.hivemind.agents, view_distance) # filters out which neighbors are closest
-	
+# find the change in velocity
+func _steering():
 	# steering += _behavior() * weighting + ...
 	var steering := Vector2.ZERO
+	# filters out which neighbors are closest
+	var nearby: Array = get_closest(Global.hivemind.agents, view_distance)
 	
 	# boid model
 	steering += _cohesion(nearby, 200) * 0.003 + _alignment(nearby, 200) * 0.01 + _separation(nearby, 32) * 0.005
@@ -25,13 +29,19 @@ func _physics_process(delta):
 		$NavigationAgent2D.set_target_location(Global.player.position)
 		steering += _seek($NavigationAgent2D.get_next_location()) * 0.1
 	
-	# clamp the steering and velocity
-	steering = steering.clamped(acceleration)
-	velocity += steering
-	velocity = velocity.clamped(max_speed)
+	return steering.clamped(acceleration)
+
+func _physics_process(delta):
+	if current_update % update_mod == 0:
+		# apply steering and clamp the velocity
+		velocity += _steering()
+		velocity = velocity.clamped(max_speed)
+		current_update = 1
+	else:
+		current_update += 1
 	
 	# move the agent
-	position += velocity * delta
+	velocity = move_and_slide(velocity)
 
 func _seek(target: Vector2):
 	var desired_velocity = (target - position).normalized() * max_speed

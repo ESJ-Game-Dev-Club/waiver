@@ -10,7 +10,7 @@ func spawn_agent(position: Vector2) -> void:
 	add_child(agent_instance)
 
 func _physics_process(_delta):
-	if Input.is_action_just_pressed("fire_alt"):
+	if Input.is_action_pressed("fire_alt"):
 		var position = Vector2.ZERO
 		position.x = rand_range(-200, 200)
 		position.y = rand_range(-200, 200)
