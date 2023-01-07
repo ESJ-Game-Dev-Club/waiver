@@ -22,7 +22,8 @@ func _physics_process(delta):
 	
 	# go towards player
 	if Input.is_action_pressed("fire"):
-		steering += _seek(Global.player.position) * 0.1
+		$NavigationAgent2D.set_target_location(Global.player.position)
+		steering += _seek($NavigationAgent2D.get_next_location()) * 0.1
 	
 	# clamp the steering and velocity
 	steering = steering.clamped(acceleration)
