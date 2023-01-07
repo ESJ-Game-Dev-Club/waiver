@@ -22,7 +22,7 @@ func _draw():
 		var color = cell_colors[id]
 		var cells = get_cells(tilemap, id)
 		for cell in cells:
-			draw_rect(Rect2(((cell - tilemap_offset) * zoom + Vector2(OS.get_real_window_size().x - 200, 0)), Vector2.ONE * zoom), color)
+			draw_rect(Rect2(((cell - tilemap_offset) * zoom + Vector2(get_viewport().size.x - 200, 0)), Vector2.ONE * zoom), color)
 
 
 func _process(delta):
