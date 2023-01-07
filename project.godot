@@ -10,19 +10,9 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "KinematicBody2D",
-"class": "Enemy",
+"class": "Agent",
 "language": "GDScript",
-"path": "res://enemy/enemy.gd"
-}, {
-"base": "State",
-"class": "EnemyState",
-"language": "GDScript",
-"path": "res://enemy/enemy_state.gd"
-}, {
-"base": "Node",
-"class": "MovementScript",
-"language": "GDScript",
-"path": "res://enemy/movement_scripts/movement_script.gd"
+"path": "res://enemy/agent.gd"
 }, {
 "base": "Area2D",
 "class": "Pickup",
@@ -55,9 +45,7 @@ _global_script_classes=[ {
 "path": "res://items/weapon.gd"
 } ]
 _global_script_class_icons={
-"Enemy": "",
-"EnemyState": "",
-"MovementScript": "",
+"Agent": "",
 "Pickup": "",
 "Player": "",
 "PlayerState": "",
@@ -144,6 +132,7 @@ zoom_out={
 [physics]
 
 common/enable_pause_aware_picking=true
+2d/default_gravity_vector=Vector2( 0, 0 )
 
 [rendering]
 

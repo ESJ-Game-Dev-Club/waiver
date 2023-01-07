@@ -36,7 +36,7 @@ func _get_input() -> Vector2: # returns normalized direction input
 	return input.normalized()
 
 func physics_process(_delta):
-	# if player is touching enemy
+	# if player is touching agent
 	if player.get_node("HitDetection").get_overlapping_bodies().size() > 0:
 		player.health -= 1
 		
