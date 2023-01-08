@@ -1,7 +1,16 @@
-extends Node
+extends Node2D
 
-var agent = preload("res://enemy/agent.tscn")
+# how far a spawn can be before it is no longer in range
+onready var spawn_range = Global.player.get_node("SpawnRange/CollisionShape2D").shape.radius
+
+var agent = preload("res://enemy/circler/circler.tscn")
 var agents := []
+
+func _input(event):
+	if event.is_action_pressed("fire_alt"):
+#		spawn_agent(_get_viable_spawns()[0].position)
+		for spawn in _get_viable_spawns():
+			spawn_agent(spawn.position)
 
 func spawn_agent(position: Vector2) -> void:
 	var agent_instance = agent.instance()
@@ -9,9 +18,5 @@ func spawn_agent(position: Vector2) -> void:
 	agents.append(agent_instance)
 	add_child(agent_instance)
 
-func _physics_process(_delta):
-	if Input.is_action_pressed("fire_alt"):
-		var position = Vector2.ZERO
-		position.x = rand_range(-200, 200)
-		position.y = rand_range(-200, 200)
-		spawn_agent(position + Global.player.position)
+func _get_viable_spawns():
+	return Global.player.get_node("SpawnRange").get_overlapping_areas()

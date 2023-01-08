@@ -9,11 +9,13 @@
 [node name="Main" type="Node"]
 script = ExtResource( 5 )
 
-[node name="Hud" parent="." instance=ExtResource( 3 )]
+[node name="YSort" type="YSort" parent="."]
 
-[node name="World" parent="." instance=ExtResource( 4 )]
+[node name="Player" parent="YSort" instance=ExtResource( 1 )]
 
-[node name="Player" parent="." instance=ExtResource( 1 )]
-
-[node name="Hivemind" type="Node" parent="."]
+[node name="Hivemind" type="YSort" parent="YSort"]
 script = ExtResource( 2 )
+
+[node name="World" parent="YSort" instance=ExtResource( 4 )]
+
+[node name="Hud" parent="." instance=ExtResource( 3 )]

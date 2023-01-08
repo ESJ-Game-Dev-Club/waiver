@@ -3,16 +3,16 @@ extends KinematicBody2D
 
 
 var current_update := 1
-var update_mod := 5
+export var update_mod := 5
 
 var velocity := Vector2.ZERO
-var acceleration := 30
-var max_speed := 90
-var view_distance = 200 # max view distance that the agent can see other agents
-
-
-func _ready():
-	velocity = Vector2(0, 30).rotated(rand_range(0, 360))
+export var acceleration := 30
+export var max_speed := 90
+export var view_distance = 200 # max view distance that the agent can see other agents
+#
+#
+#func _ready():
+#	velocity = Vector2(0, 30).rotated(rand_range(0, 360))
 
 # find the change in velocity
 func _steering():
@@ -26,8 +26,8 @@ func _steering():
 	
 	# go towards player
 	if Input.is_action_pressed("fire"):
-		$NavigationAgent2D.set_target_location(Global.player.position)
-		steering += _seek($NavigationAgent2D.get_next_location()) * 0.1
+		var path = Navigation2DServer.map_get_path(get_world_2d().navigation_map, position, Global.player.position, true)
+		steering += _seek(path[1])
 	
 	return steering.clamped(acceleration)
 
@@ -45,6 +45,13 @@ func _physics_process(delta):
 
 func _seek(target: Vector2):
 	var desired_velocity = (target - position).normalized() * max_speed
+	return desired_velocity - velocity
+
+func _arrival(target: Vector2, slowing_distance):
+	var to_target = target - position
+	var distance = to_target.length()
+	var ramped_speed = min(max_speed, max_speed * (distance / slowing_distance))
+	var desired_velocity = (ramped_speed / distance) * to_target
 	return desired_velocity - velocity
 
 # calculate the average position and apply weighting

@@ -6,16 +6,15 @@
 [ext_resource path="res://player/states/staggered.gd" type="Script" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 16, 16 )
+extents = Vector2( 16, 4 )
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 20, 20 )
 
 [sub_resource type="CircleShape2D" id=3]
-radius = 512.062
+radius = 512.0
 
 [node name="Player" type="KinematicBody2D"]
-z_index = 10
 collision_layer = 2
 script = ExtResource( 2 )
 initial_state = NodePath("States/Normal")
@@ -36,23 +35,28 @@ one_shot = true
 wait_time = 0.1
 
 [node name="Items" type="Node2D" parent="."]
+position = Vector2( 0, -16 )
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( -1, 0 )
+position = Vector2( -1, -16 )
 texture = ExtResource( 3 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 0, -16 )
 current = true
 smoothing_enabled = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, -4 )
 shape = SubResource( 1 )
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
+position = Vector2( 0, -16 )
 color = Color( 0.45098, 0.576471, 0.87451, 1 )
 polygon = PoolVector2Array( -16, -16, 16, -16, 16, 16, -16, 16 )
 
 [node name="HitDetection" type="Area2D" parent="."]
+position = Vector2( 0, -16 )
 collision_layer = 2
 collision_mask = 8
 
@@ -60,10 +64,12 @@ collision_mask = 8
 shape = SubResource( 2 )
 
 [node name="PickupDetection" type="Area2D" parent="."]
+position = Vector2( 0, -16 )
 collision_layer = 2
 collision_mask = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PickupDetection"]
+visible = false
 shape = SubResource( 2 )
 
 [node name="SpawnRange" type="Area2D" parent="."]

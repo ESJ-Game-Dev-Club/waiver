@@ -2,7 +2,7 @@ extends Control
 
 
 onready var camera = Global.player.get_node("Camera2D")
-onready var tilemap = get_node("/root/Main/World/Ground")
+onready var tilemap = get_node("/root/Main/YSort/World/Ground")
 export(Array, Color) var cell_colors
 export var zoom = 4
 
